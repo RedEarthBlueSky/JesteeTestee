@@ -1,14 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import Profile from './src/Profile';
+import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
+
+import Users from './src/features/middleware/users';
 
 const instructions = Platform.select({
   ios: 'iOS',
@@ -22,23 +15,42 @@ class App extends Component<Props> {
   constructor() {
     super();
     this.state = {
-      data: 'test',
+      userN: 'test',
+      pw: 'bloggs',
     }
   }
 
-  change(x) {
-    this.setState({ data: x * 10 });
+  componentWillMount() {
+    Users.all()
+      .then((data) => {
+        console.warn('Check API data', data);
+      })
+  }
+
+  //  model for reducer
+  change(status, input) {
+    if (status === 'username') this.setState({ userN: input });
+    if (status === 'pw') this.setState({ pw: input });
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.instructions}>Test Jest RN {instructions}</Text>
-        <Profile
-          placeholder={'Your data here'}
-          onChangeText={(text) => this.change(text)}
+        <TextInput
+          testID={'username'}
+          onChangeText={(text) => this.change('username', text)}
+          placeholder={'Enter Username'}
+          style={styles.inputStyle}
         />
-        <Text>Your input: {this.state.data}</Text>
+        <TextInput
+          testID={'password'}
+          onChangeText={(text) => this.change('pw', text)}
+          placeholder={'Enter Password'}
+          style={styles.inputStyle}
+        />
+      <Text>Your username: {this.state.userN}</Text>
+      <Text>Your password: {this.state.pw}</Text>
       </View>
     );
   }
@@ -51,9 +63,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
+  inputStyle: {
+    backgroundColor: 'grey',
     margin: 10,
   },
   instructions: {
@@ -63,6 +74,12 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
 });
+
 
 export default App;

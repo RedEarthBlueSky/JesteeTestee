@@ -3,12 +3,6 @@ import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import Users from './src/features/middleware/users';
 
-const instructions = Platform.select({
-  ios: 'iOS',
-  android:
-    'Android',
-});
-
 type Props = {};
 
 class App extends Component<Props> {
@@ -55,6 +49,12 @@ class App extends Component<Props> {
     );
   }
 }
+
+const instructions = Platform.select({
+  ios: 'iOS',
+  android:
+    'Android',
+});
 
 const styles = StyleSheet.create({
   container: {

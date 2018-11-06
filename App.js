@@ -17,12 +17,28 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+
+class App extends Component<Props> {
+  constructor() {
+    super();
+    this.state = {
+      data: 'test',
+    }
+  }
+
+  change(x) {
+    this.setState({ data: x * 10 });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.instructions}>Test Jest React Native {instructions}</Text>
-        <Profile />
+        <Text style={styles.instructions}>Test Jest RN {instructions}</Text>
+        <Profile
+          placeholder={'Your data here'}
+          onChangeText={(text) => this.change(text)}
+        />
+        <Text>Your input: {this.state.data}</Text>
       </View>
     );
   }
@@ -48,3 +64,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+export default App;

@@ -22,7 +22,7 @@ exports[`App Snapshot 1`] = `
       }
     }
   >
-    Test Jest React Native 
+    Test Jest RN 
     iOS
   </Text>
   <View>
@@ -36,6 +36,19 @@ exports[`App Snapshot 1`] = `
     >
       Profile Component
     </Text>
+    <TextInput
+      allowFontScaling={true}
+      style={
+        Object {
+          "backgroundColor": "grey",
+          "margin": 10,
+        }
+      }
+      underlineColorAndroid="transparent"
+    />
   </View>
+  <Text>
+    Jest Test Data
+  </Text>
 </View>
 `;

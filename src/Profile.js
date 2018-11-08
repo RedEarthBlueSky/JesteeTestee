@@ -4,13 +4,13 @@ import { View, Text, StyleSheet, TextInput } from 'react-native';
 const Profile = (props) => {
     return (
       <View>
-        <Text style={styles.textStyle}>Profile Component</Text>
-        <TextInput
+        <Text style={{ fontSize: 30 }}>Am I a props child?</Text>
+        {/* <TextInput
           testID={props.username}
           onChangeText={props.onChangeText}
           placeholder={props.placeholder}
           style={styles.inputStyle}
-        />
+        /> */}
       </View>
     );
 };

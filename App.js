@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
 
-import Users from './src/features/middleware/users';
-import Profile from './src/Profile';
+// import Users from './src/features/middleware/users';
+// import Profile from './src/Profile';
+import AsyncAwait from './src/AsyncAwait';
 
 type Props = {};
 
@@ -18,13 +19,13 @@ class App extends Component<Props> {
   }
 
   componentWillMount() {
-    Users.all()
-      .then((data) => {
-        this.setState({ data: data.movies });
-      })
-      .then(() => {
-        console.log('App has this data:', this.state.data);
-      });
+    // Users.all()
+    //   .then((data) => {
+    //     this.setState({ data: data.movies });
+    //   })
+    //   .then(() => {
+    //     console.log('App has this data:', this.state.data);
+    //   });
   }
 
   displayData() {
@@ -57,16 +58,17 @@ class App extends Component<Props> {
           placeholder={'Enter Password'}
           style={styles.inputStyle}
         />
-        <Profile
+        {/* <Profile
           testID={'profile'}
           value={this.state.profile}
           onChangeText={(text) => this.setState({ profile: text })}
           placeholder={'Profile'}
-        />
-      <Text>Your username: {this.state.userN}</Text>
-      <Text>Your password: {this.state.pw}</Text>
-      <Text>Your Profile: {this.state.profile}</Text>
-      {this.displayData()}
+        /> */}
+        <Text>Your username: {this.state.userN}</Text>
+        <Text>Your password: {this.state.pw}</Text>
+        {/* <Text>Your Profile: {this.state.profile}</Text>
+        {this.displayData()} */}
+        <AsyncAwait />
       </View>
     );
   }
